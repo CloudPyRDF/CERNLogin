@@ -23,9 +23,11 @@ const dialogHTML = `
     </span>
   </button>
   <form id="login-form">
-    <label>Login</label>
+    <label for="login">Login</label>
+    <br>
     <input type="text" id="login" name="login" autofocus><br><br>
-    <label>Password</label>
+    <label for="password">Password</label>
+    <br>
     <input type="password" id="password" name="password">
     <button type="button" id="submit-btn">
       Sign in

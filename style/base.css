@@ -8,7 +8,7 @@
 }
 
 #login-dialog {
-    width: 500px;
+    width: 400px;
     border: none;
     border-radius: 5px;
     margin-top: 7%;
@@ -35,6 +35,11 @@
     top: 0;
     color: #5C7080;
     margin: 5px 5px 0 0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
 }
 
 #submit-btn {

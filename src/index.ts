@@ -24,10 +24,8 @@ const dialogHTML = `
   </button>
   <form id="login-form">
     <label for="login">Login</label>
-    <br>
-    <input type="text" id="login" name="login" autofocus><br><br>
+    <input type="text" id="login" name="login" autofocus>
     <label for="password">Password</label>
-    <br>
     <input type="password" id="password" name="password">
     <button type="button" id="submit-btn">
       Sign in

@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
+    "@types/node": "^15.6.1",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.14.0",
@@ -64,20 +65,8 @@
     "style/*.css",
     "style/index.js"
   ],
-  "styleModule": "style/index.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "jupyterlab": {
     "extension": true,
     "outputDir": "CERNLogin/labextension"
-  },
-  "jupyter-releaser": {
-    "hooks": {
-      "before-build-npm": [
-        "python -m pip install jupyterlab~=3.1",
-        "jlpm"
-      ]
-    }
   }
 }

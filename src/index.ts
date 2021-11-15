@@ -16,18 +16,18 @@ import { ServerConnection } from '@jupyterlab/services';
 import { URLExt } from '@jupyterlab/coreutils';
 
 const dialogHTML = `
-  <h1 id="dialog-title">Login using CERN credentials</h1>
-  <button type="button" class="action-button" id="close-button">
+  <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>
+  <button type="button" class="cern-login-action-button" id="cern-login-close-button">
     <span class="material-icons-outlined">
       close
     </span>
   </button>
-  <form id="login-form">
+  <form id="cern-login-form">
     <label for="login">Login</label>
-    <input type="text" id="login" name="login" autofocus>
+    <input type="text" id="cern-login-login" name="login" autofocus>
     <label for="password">Password</label>
-    <input type="password" id="password" name="password">
-    <button type="button" id="login-btn">
+    <input type="password" id="cern-login-password" name="password">
+    <button type="button" id="cern-login-login-button">
       Sign in
     </button>
   </form>
@@ -98,22 +98,22 @@ export class CERNLoginExtension
   openDialog(): void {
     if (!this.dialogOpened) {
       this.shadowBox = document.createElement('div');
-      this.shadowBox.id = 'shadow-box';
+      this.shadowBox.id = 'cern-login-shadow-box';
 
       this.dialog = document.createElement('dialog');
       this.dialog.innerHTML = dialogHTML;
 
-      this.dialog.id = 'login-dialog';
+      this.dialog.id = 'cern-login-dialog';
 
       this.shadowBox.appendChild(this.dialog);
       document.body.appendChild(this.shadowBox);
 
       document
-        .getElementById('close-button')
+        .getElementById('cern-login-close-button')
         ?.addEventListener('click', () => this.closeDialog());
 
       document
-        .getElementById('submit-btn')
+        .getElementById('cern-login-submit-button')
         ?.addEventListener('click', () => this.submitData());
 
       this.setData();
@@ -125,16 +125,19 @@ export class CERNLoginExtension
 
   setData(): void {
     if (this.login && this.password) {
-      (<HTMLInputElement>document.getElementById('login')).value = this.login;
-      (<HTMLInputElement>document.getElementById('password')).value =
+      (<HTMLInputElement>document.getElementById('cern-login-login')).value =
+        this.login;
+      (<HTMLInputElement>document.getElementById('cern-login-password')).value =
         this.password;
     }
   }
 
   saveData(): void {
-    this.login = (<HTMLInputElement>document.getElementById('login')).value;
+    this.login = (<HTMLInputElement>(
+      document.getElementById('cern-login-login')
+    )).value;
     this.password = (<HTMLInputElement>(
-      document.getElementById('password')
+      document.getElementById('cern-login-password')
     )).value;
   }
 
@@ -153,7 +156,7 @@ export class CERNLoginExtension
     this.saveData();
 
     if (this.dialogOpened) {
-      const shadowBox = document.getElementById('shadow-box');
+      const shadowBox = document.getElementById('cern-login-shadow-box');
       if (shadowBox !== null) {
         document.body.removeChild(shadowBox);
         this.dialogOpened = false;
@@ -163,13 +166,13 @@ export class CERNLoginExtension
 
   addSnackbar(): void {
     const snackbar = document.createElement('div');
-    snackbar.id = 'snackbar';
+    snackbar.id = 'cern-login-snackbar';
     snackbar.innerHTML = snackbarHTML;
     document.body.appendChild(snackbar);
   }
 
   showSnackbar(): void {
-    const snackbar = document.getElementById('snackbar');
+    const snackbar = document.getElementById('cern-login-snackbar');
     if (snackbar !== null) {
       snackbar.className = 'show';
       setTimeout(() => {

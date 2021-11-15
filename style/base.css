@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 
-#shadow-box {
+#cern-login-shadow-box {
     width: 100%;
     height: 100vh;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-#login-dialog {
+#cern-login-dialog {
     width: 400px;
     border: none;
     border-radius: 5px;
     margin-top: 7%;
 }
 
-#login-dialog > * {
+#cern-login-dialog > * {
     font-family: Roboto, sans-serif;
     font-size: 18px;
 }
 
-#dialog-title {
+#cern-login-dialog-title {
     font-size: 24px;
     font-weight: 500;
     text-align: center;
 }
 
-#close-button {
+#cern-login-close-button {
     padding: 0;
     border: none;
     background-color: transparent;
@@ -37,12 +37,12 @@
     margin: 5px 5px 0 0;
 }
 
-#login-form {
+#cern-login-form {
     display: flex;
     flex-direction: column;
 }
 
-#login-btn {
+#cern-login-login-button {
     border-radius: 15px;
     background-color: #0033A0;
     height: 32px;
@@ -53,13 +53,13 @@
     font-size: 14px;
 }
 
-#submit-btn:hover {
+#cern-login-submit-button:hover {
     cursor: pointer;
     background-color: #FFFFFF;
     color: #0033A0;
 }
 
-#snackbar {
+#cern-login-snackbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -77,17 +77,17 @@
     bottom: 30px;
 }
 
-#snackbar.show {
+#cern-login-snackbar.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -webkit-animation: cern-login-fadein 0.5s, cern-login-fadeout 0.5s 2.5s;
+    animation: cern-login-fadein 0.5s, cern-login-fadeout 0.5s 2.5s;
 }
 
-#snackbar p {
+#cern-login-snackbar p {
     font-size: 15px;
 }
 
-@-webkit-keyframes fadein {
+@-webkit-keyframes cern-login-fadein {
     from {
         bottom: 0;
         opacity: 0;
@@ -98,7 +98,7 @@
     }
 }
 
-@keyframes fadein {
+@keyframes cern-login-fadein {
     from {
         bottom: 0;
         opacity: 0;
@@ -109,7 +109,7 @@
     }
 }
 
-@-webkit-keyframes fadeout {
+@-webkit-keyframes cern-login-fadeout {
     from {
         bottom: 30px;
         opacity: 1;
@@ -120,7 +120,7 @@
     }
 }
 
-@keyframes fadeout {
+@keyframes cern-login-fadeout {
     from {
         bottom: 30px;
         opacity: 1;

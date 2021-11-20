@@ -16,7 +16,7 @@
 
 #cern-login-dialog > * {
     font-family: Roboto, sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 #cern-login-dialog-title {
@@ -42,6 +42,15 @@
     flex-direction: column;
 }
 
+#cern-login-form input {
+    font-size: 18px;
+}
+
+#cern-login-form label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 #cern-login-submit-button {
     border-radius: 15px;
     background-color: #0033A0;
@@ -51,6 +60,8 @@
     transition: 0.5s;
     font-weight: 400;
     font-size: 14px;
+    align-self: flex-end;
+    margin-top: 32px;
 }
 
 #cern-login-submit-button:hover {

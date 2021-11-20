@@ -12,6 +12,7 @@
     border: none;
     border-radius: 5px;
     margin-top: 7%;
+    padding: 25px;
 }
 
 #cern-login-dialog > * {
@@ -44,6 +45,10 @@
 
 #cern-login-form input {
     font-size: 18px;
+    padding-left: 8px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 6px;
 }
 
 #cern-login-form label {
@@ -54,13 +59,14 @@
 #cern-login-submit-button {
     border-radius: 15px;
     background-color: #0033A0;
+    width: 80px;
     height: 32px;
     color: #FFFFFF;
     border: 1px #0033A0 solid;
     transition: 0.5s;
     font-weight: 400;
     font-size: 14px;
-    align-self: flex-end;
+    align-self: center;
     margin-top: 32px;
 }
 
@@ -73,7 +79,7 @@
 #cern-login-snackbar {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;

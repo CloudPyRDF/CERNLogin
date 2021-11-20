@@ -27,7 +27,7 @@ const dialogHTML = `
     <input type="text" id="cern-login-login" name="login" autofocus>
     <label for="password">Password</label>
     <input type="password" id="cern-login-password" name="password">
-    <button type="button" id="cern-login-login-button">
+    <button type="button" id="cern-login-submit-button">
       Sign in
     </button>
   </form>

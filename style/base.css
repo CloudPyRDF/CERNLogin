@@ -42,7 +42,7 @@
     flex-direction: column;
 }
 
-#cern-login-login-button {
+#cern-login-submit-button {
     border-radius: 15px;
     background-color: #0033A0;
     height: 32px;

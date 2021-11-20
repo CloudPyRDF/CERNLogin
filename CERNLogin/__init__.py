@@ -1,17 +1,10 @@
+from cern_login import LoginHandler
 
-import json
-from pathlib import Path
-
-from ._version import __version__
-
-HERE = Path(__file__).parent.resolve()
-
-with (HERE / "labextension" / "package.json").open() as fid:
-    data = json.load(fid)
-
-def _jupyter_labextension_paths():
+def _jupyter_server_extension_points():
     return [{
-        "src": "labextension",
-        "dest": data["name"]
+        "module": "CERNLogin"
     }]
 
+def load_jupyter_server_extension(server_app):
+    handlers = [("/AWSConnector", LoginHandler)]
+    server_app.web_app.add_handlers(".*$", handlers)

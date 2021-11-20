@@ -81,7 +81,7 @@
     align-items: center;
     justify-content: space-evenly;
     visibility: hidden;
-    min-width: 250px;
+    min-width: 200px;
     margin-left: -125px;
     background-color: #333;
     color: #fff;

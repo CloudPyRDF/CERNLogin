@@ -19,8 +19,8 @@ def _jupyter_server_extension_points():
     }]
 
 def load_jupyter_server_extension(server_app):
-    #handlers = [("/CERNLogin", LoginHandler)]
-    #server_app.web_app.add_handlers(".*$", handlers)
+    handlers = [("/CERNLogin", LoginHandler)]
+    server_app.web_app.add_handlers(".*$", handlers)
     pass
     
 def _jupyter_server_extension_paths():

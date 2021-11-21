@@ -83,9 +83,9 @@ export class CERNLoginExtension
     document.head.appendChild(link);
   }
 
-  async sendSetRequest(): Promise<void> {
+  async sendSetRequest(): Promise<any> {
     const settings = ServerConnection.makeSettings({});
-    await ServerConnection.makeRequest(
+    const serverResponse = await ServerConnection.makeRequest(
       URLExt.join(settings.baseUrl, '/CERNLogin'),
       {
         method: 'PUT',
@@ -93,6 +93,7 @@ export class CERNLoginExtension
       },
       settings
     );
+    return serverResponse.json();
   }
 
   openDialog(): void {
@@ -145,10 +146,23 @@ export class CERNLoginExtension
     this.saveData();
 
     if (this.login.trim() !== '' && this.password.trim() !== '') {
-      this.sendSetRequest().then(() => {
+      this.sendSetRequest().then(response => {
         this.closeDialog();
         this.showSnackbar();
+        this.handleResponse(response);
       });
+    }
+  }
+
+  handleResponse(response: any): void {
+    if (response['status'] === 'SUCCESS') {
+      console.log('SUCCESS');
+    } else {
+      if (response['status'] === 'INVALID_CREDENTIALS') {
+        console.log('INVALID CREDENTIALS');
+      } else if (response['status'] === 'TIMEOUT') {
+        console.log('TIMEOUT');
+      }
     }
   }
 

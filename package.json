@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^3.1.0",
-    "@jupyterlab/notebook": "^3.0.0"
+    "@jupyterlab/notebook": "^3.0.0",
+    "@types/node": "^16.11.9"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",

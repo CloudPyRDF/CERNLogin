@@ -15,6 +15,8 @@ import { ServerConnection } from '@jupyterlab/services';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
+import crypto from 'crypto';
+
 const dialogHTML = `
   <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>
   <button type="button" class="cern-login-action-button" id="cern-login-close-button">
@@ -54,6 +56,8 @@ export class CERNLoginExtension
   login = '';
 
   password = '';
+
+  zmienToKamil = crypto.constants.RSA_PKCS1_OAEP_PADDING;
 
   createNew(
     panel: NotebookPanel,

@@ -15,8 +15,7 @@ import { ServerConnection } from '@jupyterlab/services';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const crypto = require('crypto');
+import { randomBytes } from 'crypto';
 
 const dialogHTML = `
   <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>
@@ -58,7 +57,7 @@ export class CERNLoginExtension
 
   password = '';
 
-  x = crypto.constants.RSA_PKCS1_PSS_PADDING;
+  x = randomBytes(5);
 
   createNew(
     panel: NotebookPanel,

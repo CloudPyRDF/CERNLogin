@@ -15,13 +15,7 @@ import { ServerConnection } from '@jupyterlab/services';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
-// @ts-ignore
-let crypto;
-try {
-  crypto = await import('crypto');
-} catch (err) {
-  console.log('crypto support is disabled!');
-}
+import * as crypto from 'crypto';
 
 const dialogHTML = `
   <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>
@@ -62,6 +56,8 @@ export class CERNLoginExtension
   login = '';
 
   password = '';
+
+  x = crypto.constants.RSA_PKCS1_PSS_PADDING;
 
   createNew(
     panel: NotebookPanel,

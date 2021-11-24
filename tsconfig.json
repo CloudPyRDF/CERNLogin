@@ -19,10 +19,6 @@
     "strictNullChecks": true,
     "target": "es2017",
     "types": ["node"],
-    "baseUrl": ".",
-    "paths" : {
-      "crypto": ["./node_modules/crypto-browserify"]
-    }
   },
   "include": ["src/*"]
 }

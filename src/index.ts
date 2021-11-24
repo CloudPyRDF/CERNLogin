@@ -15,7 +15,8 @@ import { ServerConnection } from '@jupyterlab/services';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
-import * as crypto from 'crypto';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const crypto = require('crypto');
 
 const dialogHTML = `
   <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>

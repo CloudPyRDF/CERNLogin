@@ -70,6 +70,6 @@
     "outputDir": "CERNLogin/labextension"
   },
   "browser": {
-  "crypto": true
+    "crypto": false
   }
 }

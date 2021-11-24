@@ -69,5 +69,8 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "CERNLogin/labextension"
+  },
+  "browser": {
+  "crypto": false
   }
 }

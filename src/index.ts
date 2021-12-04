@@ -15,8 +15,6 @@ import { ServerConnection } from '@jupyterlab/services';
 
 import { URLExt } from '@jupyterlab/coreutils';
 
-import { randomBytes } from 'crypto';
-
 const dialogHTML = `
   <h1 id="cern-login-dialog-title">Login using CERN credentials</h1>
   <button type="button" class="cern-login-action-button" id="cern-login-close-button">
@@ -35,14 +33,11 @@ const dialogHTML = `
   </form>
   `;
 
-const snackbarHTML = `
-  <span class="material-icons-outlined">
-    check
-  </span>
-  <p>
-    Successfully signed in
-  </p>
-  `;
+export enum SignInResult {
+  SUCCESS = 'SUCCESS',
+  INVALID_CREDENTIALS = 'INVALID_CREDENTIALS',
+  TIMEOUT = 'TIMEOUT'
+}
 
 export class CERNLoginExtension
   implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel>
@@ -56,8 +51,6 @@ export class CERNLoginExtension
   login = '';
 
   password = '';
-
-  x = randomBytes(5);
 
   createNew(
     panel: NotebookPanel,
@@ -152,22 +145,15 @@ export class CERNLoginExtension
     if (this.login.trim() !== '' && this.password.trim() !== '') {
       this.sendSetRequest().then(response => {
         this.closeDialog();
-        this.showSnackbar();
         this.handleResponse(response);
       });
     }
   }
 
   handleResponse(response: any): void {
-    if (response['status'] === 'SUCCESS') {
-      console.log('SUCCESS');
-    } else {
-      if (response['status'] === 'INVALID_CREDENTIALS') {
-        console.log('INVALID CREDENTIALS');
-      } else if (response['status'] === 'TIMEOUT') {
-        console.log('TIMEOUT');
-      }
-    }
+    const result = response['status'] as SignInResult;
+    this.setSnackbarAttributes(result);
+    this.showSnackbar();
   }
 
   closeDialog(): void {
@@ -185,8 +171,34 @@ export class CERNLoginExtension
   addSnackbar(): void {
     const snackbar = document.createElement('div');
     snackbar.id = 'cern-login-snackbar';
-    snackbar.innerHTML = snackbarHTML;
+    snackbar.innerHTML = '';
     document.body.appendChild(snackbar);
+  }
+
+  getSnackbarIconAndText(result: SignInResult): [string, string] {
+    switch (result) {
+      case SignInResult.SUCCESS:
+        return ['check', 'Successfully signed in'];
+      case SignInResult.INVALID_CREDENTIALS:
+        return ['error', 'Error: invalid credentials'];
+      case SignInResult.TIMEOUT:
+        return ['warning', 'Error: process timed out'];
+    }
+  }
+
+  setSnackbarAttributes(result: SignInResult): void {
+    const [iconName, text] = this.getSnackbarIconAndText(result);
+    const snackbar = document.getElementById('cern-login-snackbar');
+    if (snackbar !== null) {
+      snackbar.innerHTML = `
+      <span class="material-icons-outlined">
+        ${iconName}
+      </span>
+      <p>
+        ${text}
+      </p>
+    `;
+    }
   }
 
   showSnackbar(): void {

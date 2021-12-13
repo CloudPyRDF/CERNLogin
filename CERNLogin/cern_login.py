@@ -10,12 +10,12 @@ RSAKey = ''
 class LoginHandler(JupyterHandler):
     @tornado.web.authenticated
     def get(self):
-        message_type = self.get_json_body()['msg']
-        if message_type == 'GET_STATUS':
-            stream = os.popen('kerberos')
-        elif message_type == 'GET_PUBLIC_KEY':
-            self.write(json.dumps({'RSAPublicKey': RSAKey}))
-
+        process = subprocess.Popen(['klist', ' -s'])
+        exit_code = process.wait()
+        if exit_code == 0:
+            self.write(json.dumps({'status': 'ACTIVE'}))
+        else:
+            self.write(json.dumps({'status': 'INACTIVE'}))
 
     @tornado.web.authenticated
     def put(self):

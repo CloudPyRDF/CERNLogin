@@ -63,7 +63,13 @@ export class CERNLoginExtension
       onClick: () => this.openDialog()
     });
 
+    const toolbarButton1 = new ToolbarButton({
+      label: 'CERN Login test',
+      onClick: () => this.sendGetRequest()
+    });
+
     panel.toolbar.addItem('loginButton', toolbarButton);
+    panel.toolbar.addItem('loginButton1', toolbarButton1);
 
     this.addIconLink();
 
@@ -91,6 +97,20 @@ export class CERNLoginExtension
       settings
     );
     return serverResponse.json();
+  }
+
+  async sendGetRequest(): Promise<any> {
+    const settings = ServerConnection.makeSettings({});
+    const serverResponse = await ServerConnection.makeRequest(
+      URLExt.join(settings.baseUrl, '/CERNLogin'),
+      {
+        method: 'GET'
+      },
+      settings
+    );
+    const response = serverResponse.json();
+    console.log(response);
+    return response;
   }
 
   openDialog(): void {

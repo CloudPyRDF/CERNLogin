@@ -10,7 +10,7 @@ RSAKey = ''
 class LoginHandler(JupyterHandler):
     @tornado.web.authenticated
     def get(self):
-        process = subprocess.Popen(['klist', ' -s'])
+        process = subprocess.Popen(['klist', '-s'], env=dict(os.environ, KRB5CCNAME='/tmp/certs'))
         exit_code = process.wait()
         if exit_code == 0:
             self.write(json.dumps({'status': 'ACTIVE'}))

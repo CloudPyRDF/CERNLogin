@@ -52,31 +52,38 @@ export class CERNLoginExtension
 
   password = '';
 
+  toolbarButton: ToolbarButton | undefined;
+
   createNew(
     panel: NotebookPanel,
     context: DocumentRegistry.IContext<INotebookModel>
   ): IDisposable {
     this.dialogOpened = false;
 
-    const toolbarButton = new ToolbarButton({
+    this.toolbarButton = new ToolbarButton({
       label: 'CERN Login',
       onClick: () => this.openDialog()
     });
 
-    const toolbarButton1 = new ToolbarButton({
-      label: 'CERN Login test',
-      onClick: () => this.sendGetRequest()
-    });
+    this.toolbarButton.addClass('status-inactive');
 
-    panel.toolbar.addItem('loginButton', toolbarButton);
-    panel.toolbar.addItem('loginButton1', toolbarButton1);
+    panel.toolbar.addItem('loginButton', this.toolbarButton);
 
     this.addIconLink();
 
     this.addSnackbar();
 
-    return toolbarButton;
+    return this.toolbarButton;
   }
+
+  // changeLoginStatus(): void {
+  //   const elements = document.getElementsByClassName('jp-ToolbarButtonComponent-label');
+  //   for (let i = 0; i < elements.length; i++) {
+  //     if(elements[i].textContent == 'CERNLogin') {
+  //       elements[i].classList.add('status-inactive');
+  //     }
+  //   }
+  // }
 
   addIconLink(): void {
     const link = document.createElement('link');
@@ -172,6 +179,12 @@ export class CERNLoginExtension
 
   handleResponse(response: any): void {
     const result = response['status'] as SignInResult;
+    if (result === SignInResult.SUCCESS) {
+      if (this.toolbarButton) {
+        this.toolbarButton.removeClass('status-inactive');
+        this.toolbarButton.addClass('status-active');
+      }
+    }
     this.setSnackbarAttributes(result);
     this.showSnackbar();
   }

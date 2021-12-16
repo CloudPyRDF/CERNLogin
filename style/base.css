@@ -105,11 +105,11 @@
 }
 
 .status-inactive {
-  background-color: red;
+  background-color: #E39C9C;
 }
 
 .status-active {
-  background-color: green;
+  background-color: #B1E0AD;
 }
 
 @-webkit-keyframes cern-login-fadein {
